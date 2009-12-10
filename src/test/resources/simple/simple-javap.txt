@@ -1,0 +1,63 @@
+Compiled from "Simple.java"
+public class Simple extends java.lang.Object implements java.lang.Runnable
+  SourceFile: "Simple.java"
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#6.#17;	//  java/lang/Object."<init>":()V
+const #2 = Field	#18.#19;	//  java/lang/System.out:Ljava/io/PrintStream;
+const #3 = String	#20;	//  Hello World
+const #4 = Method	#21.#22;	//  java/io/PrintStream.print:(Ljava/lang/String;)V
+const #5 = class	#23;	//  Simple
+const #6 = class	#24;	//  java/lang/Object
+const #7 = class	#25;	//  java/lang/Runnable
+const #8 = Asciz	name;
+const #9 = Asciz	Ljava/lang/String;;
+const #10 = Asciz	<init>;
+const #11 = Asciz	()V;
+const #12 = Asciz	Code;
+const #13 = Asciz	LineNumberTable;
+const #14 = Asciz	run;
+const #15 = Asciz	SourceFile;
+const #16 = Asciz	Simple.java;
+const #17 = NameAndType	#10:#11;//  "<init>":()V
+const #18 = class	#26;	//  java/lang/System
+const #19 = NameAndType	#27:#28;//  out:Ljava/io/PrintStream;
+const #20 = Asciz	Hello World;
+const #21 = class	#29;	//  java/io/PrintStream
+const #22 = NameAndType	#30:#31;//  print:(Ljava/lang/String;)V
+const #23 = Asciz	Simple;
+const #24 = Asciz	java/lang/Object;
+const #25 = Asciz	java/lang/Runnable;
+const #26 = Asciz	java/lang/System;
+const #27 = Asciz	out;
+const #28 = Asciz	Ljava/io/PrintStream;;
+const #29 = Asciz	java/io/PrintStream;
+const #30 = Asciz	print;
+const #31 = Asciz	(Ljava/lang/String;)V;
+
+{
+public Simple();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 1: 0
+
+
+public void run();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#3; //String Hello World
+   5:	invokevirtual	#4; //Method java/io/PrintStream.print:(Ljava/lang/String;)V
+   8:	return
+  LineNumberTable: 
+   line 5: 0
+   line 6: 8
+
+
+}
+

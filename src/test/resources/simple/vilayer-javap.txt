@@ -1,0 +1,1317 @@
+Compiled from "ViLayer.java"
+public class com.mbartl.viimplementation.layer.ViLayer extends java.lang.Object
+  SourceFile: "ViLayer.java"
+  minor version: 0
+  major version: 46
+  Constant pool:
+const #1 = class	#2;	//  com/mbartl/viimplementation/layer/ViLayer
+const #2 = Asciz	com/mbartl/viimplementation/layer/ViLayer;
+const #3 = class	#4;	//  java/lang/Object
+const #4 = Asciz	java/lang/Object;
+const #5 = Asciz	buffer;
+const #6 = Asciz	Lcom/mbartl/viimplementation/layer/Buffer;;
+const #7 = Asciz	bufferEvaluator;
+const #8 = Asciz	Lcom/mbartl/viimplementation/layer/BufferEvaluator;;
+const #9 = Asciz	insertBuffer;
+const #10 = Asciz	Ljava/lang/StringBuffer;;
+const #11 = Asciz	mode;
+const #12 = Asciz	Lcom/mbartl/viimplementation/util/ViMode;;
+const #13 = Asciz	keyVerifier;
+const #14 = Asciz	Lcom/mbartl/viimplementation/layer/KeyVerifier;;
+const #15 = Asciz	keyListener;
+const #16 = Asciz	Lcom/mbartl/viimplementation/interfaces/IKeyListener;;
+const #17 = Asciz	caret;
+const #18 = Asciz	Lcom/mbartl/viimplementation/interfaces/ICaret;;
+const #19 = Asciz	layerInformation;
+const #20 = Asciz	Lcom/mbartl/viimplementation/layer/LayerInformation;;
+const #21 = Asciz	selectionManager;
+const #22 = Asciz	Lcom/mbartl/viimplementation/layer/SelectionManager;;
+const #23 = Asciz	undoManager;
+const #24 = Asciz	Lcom/mbartl/viimplementation/interfaces/IUndoManager;;
+const #25 = Asciz	lastPopupTime;
+const #26 = Asciz	J;
+const #27 = Asciz	analyzer;
+const #28 = Asciz	Lcom/mbartl/viimplementation/util/DocumentAnalyzer;;
+const #29 = Asciz	cursorInLinePosition;
+const #30 = Asciz	Lcom/mbartl/viimplementation/layer/CursorInLinePosition;;
+const #31 = Asciz	wordSeparatorUtils;
+const #32 = Asciz	Lcom/mbartl/viimplementation/util/WordSeparatorUtils;;
+const #33 = Asciz	suppressNextStatusLineMessage;
+const #34 = Asciz	Z;
+const #35 = Asciz	<clinit>;
+const #36 = Asciz	()V;
+const #37 = Asciz	Code;
+const #38 = Method	#39.#41;	//  java/lang/System.currentTimeMillis:()J
+const #39 = class	#40;	//  java/lang/System
+const #40 = Asciz	java/lang/System;
+const #41 = NameAndType	#42:#43;//  currentTimeMillis:()J
+const #42 = Asciz	currentTimeMillis;
+const #43 = Asciz	()J;
+const #44 = Field	#1.#45;	//  com/mbartl/viimplementation/layer/ViLayer.lastPopupTime:J
+const #45 = NameAndType	#25:#26;//  lastPopupTime:J
+const #46 = Asciz	LineNumberTable;
+const #47 = Asciz	LocalVariableTable;
+const #48 = Asciz	<init>;
+const #49 = Asciz	(Lcom/mbartl/viimplementation/layer/LayerInformation;)V;
+const #50 = Method	#3.#51;	//  java/lang/Object."<init>":()V
+const #51 = NameAndType	#48:#36;//  "<init>":()V
+const #52 = class	#53;	//  java/lang/StringBuffer
+const #53 = Asciz	java/lang/StringBuffer;
+const #54 = Method	#52.#51;	//  java/lang/StringBuffer."<init>":()V
+const #55 = Field	#1.#56;	//  com/mbartl/viimplementation/layer/ViLayer.insertBuffer:Ljava/lang/StringBuffer;
+const #56 = NameAndType	#9:#10;//  insertBuffer:Ljava/lang/StringBuffer;
+const #57 = Field	#1.#58;	//  com/mbartl/viimplementation/layer/ViLayer.keyListener:Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+const #58 = NameAndType	#15:#16;//  keyListener:Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+const #59 = Field	#1.#60;	//  com/mbartl/viimplementation/layer/ViLayer.layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+const #60 = NameAndType	#19:#20;//  layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+const #61 = Field	#62.#64;	//  com/mbartl/viimplementation/util/ViMode.COMMAND_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #62 = class	#63;	//  com/mbartl/viimplementation/util/ViMode
+const #63 = Asciz	com/mbartl/viimplementation/util/ViMode;
+const #64 = NameAndType	#65:#12;//  COMMAND_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #65 = Asciz	COMMAND_MODE;
+const #66 = Field	#1.#67;	//  com/mbartl/viimplementation/layer/ViLayer.mode:Lcom/mbartl/viimplementation/util/ViMode;
+const #67 = NameAndType	#11:#12;//  mode:Lcom/mbartl/viimplementation/util/ViMode;
+const #68 = class	#69;	//  com/mbartl/viimplementation/layer/SelectionManager
+const #69 = Asciz	com/mbartl/viimplementation/layer/SelectionManager;
+const #70 = Method	#68.#71;	//  com/mbartl/viimplementation/layer/SelectionManager."<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+const #71 = NameAndType	#48:#72;//  "<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+const #72 = Asciz	(Lcom/mbartl/viimplementation/layer/ViLayer;)V;
+const #73 = Field	#1.#74;	//  com/mbartl/viimplementation/layer/ViLayer.selectionManager:Lcom/mbartl/viimplementation/layer/SelectionManager;
+const #74 = NameAndType	#21:#22;//  selectionManager:Lcom/mbartl/viimplementation/layer/SelectionManager;
+const #75 = Method	#76.#78;	//  com/mbartl/viimplementation/layer/LayerInformation.getUndoManager:()Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+const #76 = class	#77;	//  com/mbartl/viimplementation/layer/LayerInformation
+const #77 = Asciz	com/mbartl/viimplementation/layer/LayerInformation;
+const #78 = NameAndType	#79:#80;//  getUndoManager:()Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+const #79 = Asciz	getUndoManager;
+const #80 = Asciz	()Lcom/mbartl/viimplementation/interfaces/IUndoManager;;
+const #81 = Field	#1.#82;	//  com/mbartl/viimplementation/layer/ViLayer.undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+const #82 = NameAndType	#23:#24;//  undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+const #83 = Method	#76.#84;	//  com/mbartl/viimplementation/layer/LayerInformation.getCaret:()Lcom/mbartl/viimplementation/interfaces/ICaret;
+const #84 = NameAndType	#85:#86;//  getCaret:()Lcom/mbartl/viimplementation/interfaces/ICaret;
+const #85 = Asciz	getCaret;
+const #86 = Asciz	()Lcom/mbartl/viimplementation/interfaces/ICaret;;
+const #87 = Field	#1.#88;	//  com/mbartl/viimplementation/layer/ViLayer.caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+const #88 = NameAndType	#17:#18;//  caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+const #89 = class	#90;	//  com/mbartl/viimplementation/layer/KeyVerifier
+const #90 = Asciz	com/mbartl/viimplementation/layer/KeyVerifier;
+const #91 = Method	#89.#71;	//  com/mbartl/viimplementation/layer/KeyVerifier."<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+const #92 = Field	#1.#93;	//  com/mbartl/viimplementation/layer/ViLayer.keyVerifier:Lcom/mbartl/viimplementation/layer/KeyVerifier;
+const #93 = NameAndType	#13:#14;//  keyVerifier:Lcom/mbartl/viimplementation/layer/KeyVerifier;
+const #94 = class	#95;	//  com/mbartl/viimplementation/layer/Buffer
+const #95 = Asciz	com/mbartl/viimplementation/layer/Buffer;
+const #96 = Method	#94.#51;	//  com/mbartl/viimplementation/layer/Buffer."<init>":()V
+const #97 = Field	#1.#98;	//  com/mbartl/viimplementation/layer/ViLayer.buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+const #98 = NameAndType	#5:#6;//  buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+const #99 = class	#100;	//  com/mbartl/viimplementation/layer/BufferEvaluator
+const #100 = Asciz	com/mbartl/viimplementation/layer/BufferEvaluator;
+const #101 = Method	#99.#71;	//  com/mbartl/viimplementation/layer/BufferEvaluator."<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+const #102 = Field	#1.#103;	//  com/mbartl/viimplementation/layer/ViLayer.bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+const #103 = NameAndType	#7:#8;//  bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+const #104 = class	#105;	//  com/mbartl/viimplementation/util/DocumentAnalyzer
+const #105 = Asciz	com/mbartl/viimplementation/util/DocumentAnalyzer;
+const #106 = Method	#76.#107;	//  com/mbartl/viimplementation/layer/LayerInformation.getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+const #107 = NameAndType	#108:#109;//  getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+const #108 = Asciz	getDocument;
+const #109 = Asciz	()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;;
+const #110 = Method	#111.#113;	//  com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter.get:()Ljava/lang/String;
+const #111 = class	#112;	//  com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter
+const #112 = Asciz	com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+const #113 = NameAndType	#114:#115;//  get:()Ljava/lang/String;
+const #114 = Asciz	get;
+const #115 = Asciz	()Ljava/lang/String;;
+const #116 = Method	#104.#117;	//  com/mbartl/viimplementation/util/DocumentAnalyzer."<init>":(Ljava/lang/String;)V
+const #117 = NameAndType	#48:#118;//  "<init>":(Ljava/lang/String;)V
+const #118 = Asciz	(Ljava/lang/String;)V;
+const #119 = Field	#1.#120;	//  com/mbartl/viimplementation/layer/ViLayer.analyzer:Lcom/mbartl/viimplementation/util/DocumentAnalyzer;
+const #120 = NameAndType	#27:#28;//  analyzer:Lcom/mbartl/viimplementation/util/DocumentAnalyzer;
+const #121 = class	#122;	//  com/mbartl/viimplementation/layer/CursorInLinePosition
+const #122 = Asciz	com/mbartl/viimplementation/layer/CursorInLinePosition;
+const #123 = Method	#1.#124;	//  com/mbartl/viimplementation/layer/ViLayer.getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+const #124 = NameAndType	#125:#126;//  getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+const #125 = Asciz	getEditor;
+const #126 = Asciz	()Lcom/mbartl/viimplementation/interfaces/IEditor;;
+const #127 = Method	#121.#128;	//  com/mbartl/viimplementation/layer/CursorInLinePosition."<init>":(Lcom/mbartl/viimplementation/interfaces/IEditor;Lcom/mbartl/viimplementation/util/DocumentAnalyzer;)V
+const #128 = NameAndType	#48:#129;//  "<init>":(Lcom/mbartl/viimplementation/interfaces/IEditor;Lcom/mbartl/viimplementation/util/DocumentAnalyzer;)V
+const #129 = Asciz	(Lcom/mbartl/viimplementation/interfaces/IEditor;Lcom/mbartl/viimplementation/util/DocumentAnalyzer;)V;
+const #130 = Field	#1.#131;	//  com/mbartl/viimplementation/layer/ViLayer.cursorInLinePosition:Lcom/mbartl/viimplementation/layer/CursorInLinePosition;
+const #131 = NameAndType	#29:#30;//  cursorInLinePosition:Lcom/mbartl/viimplementation/layer/CursorInLinePosition;
+const #132 = Method	#133.#135;	//  com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+const #133 = class	#134;	//  com/mbartl/viimplementation/preferences/ViPreferenceService
+const #134 = Asciz	com/mbartl/viimplementation/preferences/ViPreferenceService;
+const #135 = NameAndType	#136:#137;//  getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+const #136 = Asciz	getInstance;
+const #137 = Asciz	()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;;
+const #138 = Method	#133.#139;	//  com/mbartl/viimplementation/preferences/ViPreferenceService.getPreferences:()Lcom/mbartl/viimplementation/preferences/Preferences;
+const #139 = NameAndType	#140:#141;//  getPreferences:()Lcom/mbartl/viimplementation/preferences/Preferences;
+const #140 = Asciz	getPreferences;
+const #141 = Asciz	()Lcom/mbartl/viimplementation/preferences/Preferences;;
+const #142 = String	#143;	//  wordseparators
+const #143 = Asciz	wordseparators;
+const #144 = Method	#145.#147;	//  com/mbartl/viimplementation/preferences/Preferences.getString:(Ljava/lang/String;)Ljava/lang/String;
+const #145 = class	#146;	//  com/mbartl/viimplementation/preferences/Preferences
+const #146 = Asciz	com/mbartl/viimplementation/preferences/Preferences;
+const #147 = NameAndType	#148:#149;//  getString:(Ljava/lang/String;)Ljava/lang/String;
+const #148 = Asciz	getString;
+const #149 = Asciz	(Ljava/lang/String;)Ljava/lang/String;;
+const #150 = class	#151;	//  com/mbartl/viimplementation/util/WordSeparatorUtils
+const #151 = Asciz	com/mbartl/viimplementation/util/WordSeparatorUtils;
+const #152 = Method	#150.#117;	//  com/mbartl/viimplementation/util/WordSeparatorUtils."<init>":(Ljava/lang/String;)V
+const #153 = Field	#1.#154;	//  com/mbartl/viimplementation/layer/ViLayer.wordSeparatorUtils:Lcom/mbartl/viimplementation/util/WordSeparatorUtils;
+const #154 = NameAndType	#31:#32;//  wordSeparatorUtils:Lcom/mbartl/viimplementation/util/WordSeparatorUtils;
+const #155 = Method	#1.#156;	//  com/mbartl/viimplementation/layer/ViLayer.switchToCommandMode:()V
+const #156 = NameAndType	#157:#36;//  switchToCommandMode:()V
+const #157 = Asciz	switchToCommandMode;
+const #158 = Asciz	this;
+const #159 = Asciz	Lcom/mbartl/viimplementation/layer/ViLayer;;
+const #160 = Asciz	info;
+const #161 = Asciz	preferences;
+const #162 = Asciz	Lcom/mbartl/viimplementation/preferences/Preferences;;
+const #163 = Asciz	separators;
+const #164 = Asciz	Ljava/lang/String;;
+const #165 = Asciz	setStatusLine;
+const #166 = Field	#1.#167;	//  com/mbartl/viimplementation/layer/ViLayer.suppressNextStatusLineMessage:Z
+const #167 = NameAndType	#33:#34;//  suppressNextStatusLineMessage:Z
+const #168 = String	#169;	//  
+const #169 = Asciz	;
+const #170 = String	#171;	//  CommandMode
+const #171 = Asciz	CommandMode;
+const #172 = Method	#94.#173;	//  com/mbartl/viimplementation/layer/Buffer.getStatusLineCommand:()Ljava/lang/String;
+const #173 = NameAndType	#174:#115;//  getStatusLineCommand:()Ljava/lang/String;
+const #174 = Asciz	getStatusLineCommand;
+const #175 = Field	#62.#176;	//  com/mbartl/viimplementation/util/ViMode.INSERT_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #176 = NameAndType	#177:#12;//  INSERT_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #177 = Asciz	INSERT_MODE;
+const #178 = String	#179;	//  InsertMode
+const #179 = Asciz	InsertMode;
+const #180 = Field	#62.#181;	//  com/mbartl/viimplementation/util/ViMode.VISUAL_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #181 = NameAndType	#182:#12;//  VISUAL_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #182 = Asciz	VISUAL_MODE;
+const #183 = String	#184;	//  VisualMode
+const #184 = Asciz	VisualMode;
+const #185 = Field	#62.#186;	//  com/mbartl/viimplementation/util/ViMode.VISUAL_LINE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #186 = NameAndType	#187:#12;//  VISUAL_LINE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #187 = Asciz	VISUAL_LINE_MODE;
+const #188 = String	#189;	//  VisualLineMode
+const #189 = Asciz	VisualLineMode;
+const #190 = Field	#62.#191;	//  com/mbartl/viimplementation/util/ViMode.REPLACE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #191 = NameAndType	#192:#12;//  REPLACE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+const #192 = Asciz	REPLACE_MODE;
+const #193 = String	#194;	//  ReplaceMode
+const #194 = Asciz	ReplaceMode;
+const #195 = String	#196;	//  Something unexpected happened. Please report an error!
+const #196 = Asciz	Something unexpected happened. Please report an error!;
+const #197 = Method	#76.#198;	//  com/mbartl/viimplementation/layer/LayerInformation.getStatusLineManager:()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;
+const #198 = NameAndType	#199:#200;//  getStatusLineManager:()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;
+const #199 = Asciz	getStatusLineManager;
+const #200 = Asciz	()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;;
+const #201 = InterfaceMethod	#202.#204;	//  com/mbartl/viimplementation/interfaces/IViStatusLineManager.setMode:(Ljava/lang/String;)V
+const #202 = class	#203;	//  com/mbartl/viimplementation/interfaces/IViStatusLineManager
+const #203 = Asciz	com/mbartl/viimplementation/interfaces/IViStatusLineManager;
+const #204 = NameAndType	#205:#118;//  setMode:(Ljava/lang/String;)V
+const #205 = Asciz	setMode;
+const #206 = InterfaceMethod	#202.#207;	//  com/mbartl/viimplementation/interfaces/IViStatusLineManager.setMessage:(Ljava/lang/String;)V
+const #207 = NameAndType	#208:#118;//  setMessage:(Ljava/lang/String;)V
+const #208 = Asciz	setMessage;
+const #209 = Asciz	message;
+const #210 = Asciz	modeString;
+const #211 = Asciz	setCommandBufferStatusMessage;
+const #212 = Asciz	setStatus;
+const #213 = InterfaceMethod	#202.#214;	//  com/mbartl/viimplementation/interfaces/IViStatusLineManager.setStatusLine:(Ljava/lang/String;)V
+const #214 = NameAndType	#165:#118;//  setStatusLine:(Ljava/lang/String;)V
+const #215 = Asciz	status;
+const #216 = InterfaceMethod	#217.#219;	//  com/mbartl/viimplementation/interfaces/IUndoManager.endCompoundChange:()V
+const #217 = class	#218;	//  com/mbartl/viimplementation/interfaces/IUndoManager
+const #218 = Asciz	com/mbartl/viimplementation/interfaces/IUndoManager;
+const #219 = NameAndType	#220:#36;//  endCompoundChange:()V
+const #220 = Asciz	endCompoundChange;
+const #221 = Method	#99.#222;	//  com/mbartl/viimplementation/layer/BufferEvaluator.clear:()V
+const #222 = NameAndType	#223:#36;//  clear:()V
+const #223 = Asciz	clear;
+const #224 = String	#225;	//  vimcursor
+const #225 = Asciz	vimcursor;
+const #226 = Method	#133.#227;	//  com/mbartl/viimplementation/preferences/ViPreferenceService.getBoolean:(Ljava/lang/String;)Z
+const #227 = NameAndType	#228:#229;//  getBoolean:(Ljava/lang/String;)Z
+const #228 = Asciz	getBoolean;
+const #229 = Asciz	(Ljava/lang/String;)Z;
+const #230 = InterfaceMethod	#231.#233;	//  com/mbartl/viimplementation/interfaces/ICaret.setCaretThick:()V
+const #231 = class	#232;	//  com/mbartl/viimplementation/interfaces/ICaret
+const #232 = Asciz	com/mbartl/viimplementation/interfaces/ICaret;
+const #233 = NameAndType	#234:#36;//  setCaretThick:()V
+const #234 = Asciz	setCaretThick;
+const #235 = Method	#68.#236;	//  com/mbartl/viimplementation/layer/SelectionManager.resetSelection:()V
+const #236 = NameAndType	#237:#36;//  resetSelection:()V
+const #237 = Asciz	resetSelection;
+const #238 = Method	#1.#239;	//  com/mbartl/viimplementation/layer/ViLayer.updateDocument:()V
+const #239 = NameAndType	#240:#36;//  updateDocument:()V
+const #240 = Asciz	updateDocument;
+const #241 = Asciz	switchToInsertMode;
+const #242 = InterfaceMethod	#243.#245;	//  com/mbartl/viimplementation/interfaces/IEditor.resetHighlighting:(Z)V
+const #243 = class	#244;	//  com/mbartl/viimplementation/interfaces/IEditor
+const #244 = Asciz	com/mbartl/viimplementation/interfaces/IEditor;
+const #245 = NameAndType	#246:#247;//  resetHighlighting:(Z)V
+const #246 = Asciz	resetHighlighting;
+const #247 = Asciz	(Z)V;
+const #248 = Field	#99.#98;	//  com/mbartl/viimplementation/layer/BufferEvaluator.buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+const #249 = Method	#94.#250;	//  com/mbartl/viimplementation/layer/Buffer.setCommand:(Ljava/lang/String;)V
+const #250 = NameAndType	#251:#118;//  setCommand:(Ljava/lang/String;)V
+const #251 = Asciz	setCommand;
+const #252 = InterfaceMethod	#217.#253;	//  com/mbartl/viimplementation/interfaces/IUndoManager.beginCompoundChange:()V
+const #253 = NameAndType	#254:#36;//  beginCompoundChange:()V
+const #254 = Asciz	beginCompoundChange;
+const #255 = InterfaceMethod	#231.#256;	//  com/mbartl/viimplementation/interfaces/ICaret.setCaretThin:()V
+const #256 = NameAndType	#257:#36;//  setCaretThin:()V
+const #257 = Asciz	setCaretThin;
+const #258 = Method	#52.#259;	//  java/lang/StringBuffer."<init>":(I)V
+const #259 = NameAndType	#48:#260;//  "<init>":(I)V
+const #260 = Asciz	(I)V;
+const #261 = Asciz	switchToReplaceMode;
+const #262 = Asciz	switchToVisualMode;
+const #263 = Asciz	(Lcom/mbartl/viimplementation/util/ViMode;)V;
+const #264 = Method	#68.#265;	//  com/mbartl/viimplementation/layer/SelectionManager.activateVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+const #265 = NameAndType	#266:#263;//  activateVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+const #266 = Asciz	activateVisualMode;
+const #267 = Asciz	unLoad;
+const #268 = InterfaceMethod	#231.#269;	//  com/mbartl/viimplementation/interfaces/ICaret.restoreOriginalCaret:()V
+const #269 = NameAndType	#270:#36;//  restoreOriginalCaret:()V
+const #270 = Asciz	restoreOriginalCaret;
+const #271 = InterfaceMethod	#272.#274;	//  com/mbartl/viimplementation/interfaces/IKeyListener.unregister:()V
+const #272 = class	#273;	//  com/mbartl/viimplementation/interfaces/IKeyListener
+const #273 = Asciz	com/mbartl/viimplementation/interfaces/IKeyListener;
+const #274 = NameAndType	#275:#36;//  unregister:()V
+const #275 = Asciz	unregister;
+const #276 = Method	#111.#274;	//  com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter.unregister:()V
+const #277 = Asciz	isInInsertMode;
+const #278 = Asciz	()Z;
+const #279 = Asciz	isInVisualOrVisualLineMode;
+const #280 = Asciz	isInVisualCharacterMode;
+const #281 = Asciz	isInVisualLineMode;
+const #282 = Asciz	isInCommandMode;
+const #283 = Asciz	isInReplaceMode;
+const #284 = Asciz	toggleVisualMode;
+const #285 = Method	#1.#286;	//  com/mbartl/viimplementation/layer/ViLayer.isInVisualOrVisualLineMode:()Z
+const #286 = NameAndType	#279:#278;//  isInVisualOrVisualLineMode:()Z
+const #287 = Method	#1.#288;	//  com/mbartl/viimplementation/layer/ViLayer.switchToVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+const #288 = NameAndType	#262:#263;//  switchToVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+const #289 = Asciz	toggleVisualLineMode;
+const #290 = Method	#1.#291;	//  com/mbartl/viimplementation/layer/ViLayer.isInVisualLineMode:()Z
+const #291 = NameAndType	#281:#278;//  isInVisualLineMode:()Z
+const #292 = Asciz	getInsertBuffer;
+const #293 = Asciz	()Ljava/lang/StringBuffer;;
+const #294 = Asciz	setInsertBuffer;
+const #295 = Asciz	(Ljava/lang/StringBuffer;)V;
+const #296 = Method	#76.#124;	//  com/mbartl/viimplementation/layer/LayerInformation.getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+const #297 = Asciz	getBufferEvaluator;
+const #298 = Asciz	()Lcom/mbartl/viimplementation/layer/BufferEvaluator;;
+const #299 = Asciz	getSelectionManager;
+const #300 = Asciz	()Lcom/mbartl/viimplementation/layer/SelectionManager;;
+const #301 = Asciz	verifyKeyEvent;
+const #302 = Asciz	(Lcom/mbartl/viimplementation/util/ViKeyEvent;)Z;
+const #303 = Method	#304.#306;	//  com/mbartl/viimplementation/layer/ViLayerManager.getInstance:()Lcom/mbartl/viimplementation/layer/ViLayerManager;
+const #304 = class	#305;	//  com/mbartl/viimplementation/layer/ViLayerManager
+const #305 = Asciz	com/mbartl/viimplementation/layer/ViLayerManager;
+const #306 = NameAndType	#136:#307;//  getInstance:()Lcom/mbartl/viimplementation/layer/ViLayerManager;
+const #307 = Asciz	()Lcom/mbartl/viimplementation/layer/ViLayerManager;;
+const #308 = Method	#304.#309;	//  com/mbartl/viimplementation/layer/ViLayerManager.isFullVersion:()Z
+const #309 = NameAndType	#310:#278;//  isFullVersion:()Z
+const #310 = Asciz	isFullVersion;
+const #311 = long	300000l;
+const #313 = String	#314;	//  Trial Version
+const #314 = Asciz	Trial Version;
+const #315 = String	#316;	//  To remove this message buy a full version!\nhttp://www.satokar.com/viplugin/index.php
+const #316 = Asciz	To remove this message buy a full version!\nhttp://www.satokar.com/viplugin/index.php;
+const #317 = Method	#1.#318;	//  com/mbartl/viimplementation/layer/ViLayer.showDialog:(Ljava/lang/String;Ljava/lang/String;)V
+const #318 = NameAndType	#319:#320;//  showDialog:(Ljava/lang/String;Ljava/lang/String;)V
+const #319 = Asciz	showDialog;
+const #320 = Asciz	(Ljava/lang/String;Ljava/lang/String;)V;
+const #321 = Method	#89.#322;	//  com/mbartl/viimplementation/layer/KeyVerifier.verifyKey:(Lcom/mbartl/viimplementation/util/ViKeyEvent;)Z
+const #322 = NameAndType	#323:#302;//  verifyKey:(Lcom/mbartl/viimplementation/util/ViKeyEvent;)Z
+const #323 = Asciz	verifyKey;
+const #324 = Asciz	e;
+const #325 = Asciz	Lcom/mbartl/viimplementation/util/ViKeyEvent;;
+const #326 = Asciz	time;
+const #327 = Asciz	setKeyListener;
+const #328 = Asciz	(Lcom/mbartl/viimplementation/interfaces/IKeyListener;)V;
+const #329 = InterfaceMethod	#272.#330;	//  com/mbartl/viimplementation/interfaces/IKeyListener.register:()V
+const #330 = NameAndType	#331:#36;//  register:()V
+const #331 = Asciz	register;
+const #332 = Asciz	getBookmarkImplementation;
+const #333 = Asciz	()Lcom/mbartl/viimplementation/interfaces/IBookmark;;
+const #334 = Method	#76.#335;	//  com/mbartl/viimplementation/layer/LayerInformation.getBookmark:()Lcom/mbartl/viimplementation/interfaces/IBookmark;
+const #335 = NameAndType	#336:#333;//  getBookmark:()Lcom/mbartl/viimplementation/interfaces/IBookmark;
+const #336 = Asciz	getBookmark;
+const #337 = Asciz	getDocumentAnalyzer;
+const #338 = Asciz	()Lcom/mbartl/viimplementation/util/DocumentAnalyzer;;
+const #339 = Method	#1.#340;	//  com/mbartl/viimplementation/layer/ViLayer.isInInsertMode:()Z
+const #340 = NameAndType	#277:#278;//  isInInsertMode:()Z
+const #341 = Method	#1.#342;	//  com/mbartl/viimplementation/layer/ViLayer.isInReplaceMode:()Z
+const #342 = NameAndType	#283:#278;//  isInReplaceMode:()Z
+const #343 = Method	#1.#107;	//  com/mbartl/viimplementation/layer/ViLayer.getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+const #344 = Method	#104.#345;	//  com/mbartl/viimplementation/util/DocumentAnalyzer.updateAnalyzer:(Ljava/lang/String;)V
+const #345 = NameAndType	#346:#118;//  updateAnalyzer:(Ljava/lang/String;)V
+const #346 = Asciz	updateAnalyzer;
+const #347 = Method	#76.#348;	//  com/mbartl/viimplementation/layer/LayerInformation.getMessageDialog:()Lcom/mbartl/viimplementation/interfaces/IMessageDialog;
+const #348 = NameAndType	#349:#350;//  getMessageDialog:()Lcom/mbartl/viimplementation/interfaces/IMessageDialog;
+const #349 = Asciz	getMessageDialog;
+const #350 = Asciz	()Lcom/mbartl/viimplementation/interfaces/IMessageDialog;;
+const #351 = InterfaceMethod	#352.#318;	//  com/mbartl/viimplementation/interfaces/IMessageDialog.showDialog:(Ljava/lang/String;Ljava/lang/String;)V
+const #352 = class	#353;	//  com/mbartl/viimplementation/interfaces/IMessageDialog
+const #353 = Asciz	com/mbartl/viimplementation/interfaces/IMessageDialog;
+const #354 = Asciz	title;
+const #355 = Asciz	getCursorInLinePosition;
+const #356 = Asciz	()Lcom/mbartl/viimplementation/layer/CursorInLinePosition;;
+const #357 = Asciz	getWordSeparatorUtils;
+const #358 = Asciz	()Lcom/mbartl/viimplementation/util/WordSeparatorUtils;;
+const #359 = Asciz	getBuffer;
+const #360 = Asciz	()Lcom/mbartl/viimplementation/layer/Buffer;;
+const #361 = Asciz	showVersionInformation;
+const #362 = InterfaceMethod	#352.#363;	//  com/mbartl/viimplementation/interfaces/IMessageDialog.showVersionInformation:()V
+const #363 = NameAndType	#361:#36;//  showVersionInformation:()V
+const #364 = Asciz	SourceFile;
+const #365 = Asciz	ViLayer.java;
+
+{
+static {};
+  Code:
+   Stack=2, Locals=0, Args_size=0
+   0:	invokestatic	#38; //Method java/lang/System.currentTimeMillis:()J
+   3:	putstatic	#44; //Field lastPopupTime:J
+   6:	return
+  LineNumberTable: 
+   line 49: 0
+   line 27: 6
+
+
+
+public com.mbartl.viimplementation.layer.ViLayer(com.mbartl.viimplementation.layer.LayerInformation);
+  Code:
+   Stack=5, Locals=4, Args_size=2
+   0:	aload_0
+   1:	invokespecial	#50; //Method java/lang/Object."<init>":()V
+   4:	aload_0
+   5:	new	#52; //class java/lang/StringBuffer
+   8:	dup
+   9:	invokespecial	#54; //Method java/lang/StringBuffer."<init>":()V
+   12:	putfield	#55; //Field insertBuffer:Ljava/lang/StringBuffer;
+   15:	aload_0
+   16:	aconst_null
+   17:	putfield	#57; //Field keyListener:Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+   20:	aload_0
+   21:	aload_1
+   22:	putfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   25:	aload_0
+   26:	getstatic	#61; //Field com/mbartl/viimplementation/util/ViMode.COMMAND_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   29:	putfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   32:	aload_0
+   33:	new	#68; //class com/mbartl/viimplementation/layer/SelectionManager
+   36:	dup
+   37:	aload_0
+   38:	invokespecial	#70; //Method com/mbartl/viimplementation/layer/SelectionManager."<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+   41:	putfield	#73; //Field selectionManager:Lcom/mbartl/viimplementation/layer/SelectionManager;
+   44:	aload_0
+   45:	aload_1
+   46:	invokevirtual	#75; //Method com/mbartl/viimplementation/layer/LayerInformation.getUndoManager:()Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   49:	putfield	#81; //Field undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   52:	aload_0
+   53:	aload_1
+   54:	invokevirtual	#83; //Method com/mbartl/viimplementation/layer/LayerInformation.getCaret:()Lcom/mbartl/viimplementation/interfaces/ICaret;
+   57:	putfield	#87; //Field caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+   60:	aload_0
+   61:	new	#89; //class com/mbartl/viimplementation/layer/KeyVerifier
+   64:	dup
+   65:	aload_0
+   66:	invokespecial	#91; //Method com/mbartl/viimplementation/layer/KeyVerifier."<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+   69:	putfield	#92; //Field keyVerifier:Lcom/mbartl/viimplementation/layer/KeyVerifier;
+   72:	aload_0
+   73:	new	#94; //class com/mbartl/viimplementation/layer/Buffer
+   76:	dup
+   77:	invokespecial	#96; //Method com/mbartl/viimplementation/layer/Buffer."<init>":()V
+   80:	putfield	#97; //Field buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   83:	aload_0
+   84:	new	#99; //class com/mbartl/viimplementation/layer/BufferEvaluator
+   87:	dup
+   88:	aload_0
+   89:	invokespecial	#101; //Method com/mbartl/viimplementation/layer/BufferEvaluator."<init>":(Lcom/mbartl/viimplementation/layer/ViLayer;)V
+   92:	putfield	#102; //Field bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+   95:	aload_0
+   96:	new	#104; //class com/mbartl/viimplementation/util/DocumentAnalyzer
+   99:	dup
+   100:	aload_0
+   101:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   104:	invokevirtual	#106; //Method com/mbartl/viimplementation/layer/LayerInformation.getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+   107:	invokevirtual	#110; //Method com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter.get:()Ljava/lang/String;
+   110:	invokespecial	#116; //Method com/mbartl/viimplementation/util/DocumentAnalyzer."<init>":(Ljava/lang/String;)V
+   113:	putfield	#119; //Field analyzer:Lcom/mbartl/viimplementation/util/DocumentAnalyzer;
+   116:	aload_0
+   117:	new	#121; //class com/mbartl/viimplementation/layer/CursorInLinePosition
+   120:	dup
+   121:	aload_0
+   122:	invokevirtual	#123; //Method getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+   125:	aload_0
+   126:	getfield	#119; //Field analyzer:Lcom/mbartl/viimplementation/util/DocumentAnalyzer;
+   129:	invokespecial	#127; //Method com/mbartl/viimplementation/layer/CursorInLinePosition."<init>":(Lcom/mbartl/viimplementation/interfaces/IEditor;Lcom/mbartl/viimplementation/util/DocumentAnalyzer;)V
+   132:	putfield	#130; //Field cursorInLinePosition:Lcom/mbartl/viimplementation/layer/CursorInLinePosition;
+   135:	invokestatic	#132; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+   138:	invokevirtual	#138; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getPreferences:()Lcom/mbartl/viimplementation/preferences/Preferences;
+   141:	astore_2
+   142:	aload_2
+   143:	ldc	#142; //String wordseparators
+   145:	invokevirtual	#144; //Method com/mbartl/viimplementation/preferences/Preferences.getString:(Ljava/lang/String;)Ljava/lang/String;
+   148:	astore_3
+   149:	aload_0
+   150:	new	#150; //class com/mbartl/viimplementation/util/WordSeparatorUtils
+   153:	dup
+   154:	aload_3
+   155:	invokespecial	#152; //Method com/mbartl/viimplementation/util/WordSeparatorUtils."<init>":(Ljava/lang/String;)V
+   158:	putfield	#153; //Field wordSeparatorUtils:Lcom/mbartl/viimplementation/util/WordSeparatorUtils;
+   161:	aload_0
+   162:	invokevirtual	#155; //Method switchToCommandMode:()V
+   165:	return
+  LineNumberTable: 
+   line 59: 0
+   line 33: 4
+   line 39: 15
+   line 60: 20
+   line 61: 25
+   line 62: 32
+   line 63: 44
+   line 64: 52
+   line 65: 60
+   line 66: 72
+   line 67: 83
+   line 68: 95
+   line 69: 116
+   line 70: 135
+   line 71: 138
+   line 70: 141
+   line 72: 142
+   line 73: 149
+   line 74: 161
+   line 75: 165
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      166      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      166      1    info       Lcom/mbartl/viimplementation/layer/LayerInformation;
+   142      24      2    preferences       Lcom/mbartl/viimplementation/preferences/Preferences;
+   149      17      3    separators       Ljava/lang/String;
+
+
+public void setStatusLine();
+  Code:
+   Stack=2, Locals=3, Args_size=1
+   0:	aload_0
+   1:	getfield	#166; //Field suppressNextStatusLineMessage:Z
+   4:	ifeq	13
+   7:	aload_0
+   8:	iconst_0
+   9:	putfield	#166; //Field suppressNextStatusLineMessage:Z
+   12:	return
+   13:	ldc	#168; //String 
+   15:	astore_1
+   16:	ldc	#170; //String CommandMode
+   18:	astore_2
+   19:	aload_0
+   20:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   23:	getstatic	#61; //Field com/mbartl/viimplementation/util/ViMode.COMMAND_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   26:	if_acmpne	40
+   29:	aload_0
+   30:	getfield	#97; //Field buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   33:	invokevirtual	#172; //Method com/mbartl/viimplementation/layer/Buffer.getStatusLineCommand:()Ljava/lang/String;
+   36:	astore_1
+   37:	goto	123
+   40:	aload_0
+   41:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   44:	getstatic	#175; //Field com/mbartl/viimplementation/util/ViMode.INSERT_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   47:	if_acmpne	56
+   50:	ldc	#178; //String InsertMode
+   52:	astore_2
+   53:	goto	123
+   56:	aload_0
+   57:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   60:	getstatic	#180; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   63:	if_acmpne	80
+   66:	ldc	#183; //String VisualMode
+   68:	astore_2
+   69:	aload_0
+   70:	getfield	#97; //Field buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   73:	invokevirtual	#172; //Method com/mbartl/viimplementation/layer/Buffer.getStatusLineCommand:()Ljava/lang/String;
+   76:	astore_1
+   77:	goto	123
+   80:	aload_0
+   81:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   84:	getstatic	#185; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_LINE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   87:	if_acmpne	104
+   90:	ldc	#188; //String VisualLineMode
+   92:	astore_2
+   93:	aload_0
+   94:	getfield	#97; //Field buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   97:	invokevirtual	#172; //Method com/mbartl/viimplementation/layer/Buffer.getStatusLineCommand:()Ljava/lang/String;
+   100:	astore_1
+   101:	goto	123
+   104:	aload_0
+   105:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   108:	getstatic	#190; //Field com/mbartl/viimplementation/util/ViMode.REPLACE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   111:	if_acmpne	120
+   114:	ldc	#193; //String ReplaceMode
+   116:	astore_2
+   117:	goto	123
+   120:	ldc	#195; //String Something unexpected happened. Please report an error!
+   122:	astore_1
+   123:	aload_0
+   124:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   127:	invokevirtual	#197; //Method com/mbartl/viimplementation/layer/LayerInformation.getStatusLineManager:()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;
+   130:	aload_2
+   131:	invokeinterface	#201,  2; //InterfaceMethod com/mbartl/viimplementation/interfaces/IViStatusLineManager.setMode:(Ljava/lang/String;)V
+   136:	aload_0
+   137:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   140:	invokevirtual	#197; //Method com/mbartl/viimplementation/layer/LayerInformation.getStatusLineManager:()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;
+   143:	aload_1
+   144:	invokeinterface	#206,  2; //InterfaceMethod com/mbartl/viimplementation/interfaces/IViStatusLineManager.setMessage:(Ljava/lang/String;)V
+   149:	return
+  LineNumberTable: 
+   line 83: 0
+   line 84: 7
+   line 85: 12
+   line 87: 13
+   line 88: 16
+   line 89: 19
+   line 90: 29
+   line 91: 40
+   line 92: 50
+   line 93: 56
+   line 94: 66
+   line 95: 69
+   line 96: 80
+   line 97: 90
+   line 98: 93
+   line 99: 104
+   line 100: 114
+   line 102: 120
+   line 105: 123
+   line 106: 136
+   line 107: 149
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      150      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   16      134      1    message       Ljava/lang/String;
+   19      131      2    modeString       Ljava/lang/String;
+
+
+public void setCommandBufferStatusMessage(java.lang.String);
+  Code:
+   Stack=2, Locals=2, Args_size=2
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#197; //Method com/mbartl/viimplementation/layer/LayerInformation.getStatusLineManager:()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;
+   7:	aload_1
+   8:	invokeinterface	#206,  2; //InterfaceMethod com/mbartl/viimplementation/interfaces/IViStatusLineManager.setMessage:(Ljava/lang/String;)V
+   13:	aload_0
+   14:	iconst_1
+   15:	putfield	#166; //Field suppressNextStatusLineMessage:Z
+   18:	return
+  LineNumberTable: 
+   line 115: 0
+   line 116: 13
+   line 117: 18
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      19      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      19      1    message       Ljava/lang/String;
+
+
+public void setStatus(java.lang.String);
+  Code:
+   Stack=2, Locals=2, Args_size=2
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#197; //Method com/mbartl/viimplementation/layer/LayerInformation.getStatusLineManager:()Lcom/mbartl/viimplementation/interfaces/IViStatusLineManager;
+   7:	aload_1
+   8:	invokeinterface	#213,  2; //InterfaceMethod com/mbartl/viimplementation/interfaces/IViStatusLineManager.setStatusLine:(Ljava/lang/String;)V
+   13:	return
+  LineNumberTable: 
+   line 120: 0
+   line 121: 13
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      14      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      14      1    status       Ljava/lang/String;
+
+
+public void switchToCommandMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getstatic	#61; //Field com/mbartl/viimplementation/util/ViMode.COMMAND_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	putfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	aload_0
+   8:	getfield	#81; //Field undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   11:	invokeinterface	#216,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IUndoManager.endCompoundChange:()V
+   16:	aload_0
+   17:	getfield	#102; //Field bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+   20:	invokevirtual	#221; //Method com/mbartl/viimplementation/layer/BufferEvaluator.clear:()V
+   23:	invokestatic	#132; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+   26:	ldc	#224; //String vimcursor
+   28:	invokevirtual	#226; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getBoolean:(Ljava/lang/String;)Z
+   31:	ifeq	43
+   34:	aload_0
+   35:	getfield	#87; //Field caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+   38:	invokeinterface	#230,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/ICaret.setCaretThick:()V
+   43:	aload_0
+   44:	getfield	#73; //Field selectionManager:Lcom/mbartl/viimplementation/layer/SelectionManager;
+   47:	invokevirtual	#235; //Method com/mbartl/viimplementation/layer/SelectionManager.resetSelection:()V
+   50:	aload_0
+   51:	invokevirtual	#238; //Method updateDocument:()V
+   54:	return
+  LineNumberTable: 
+   line 127: 0
+   line 128: 7
+   line 129: 16
+   line 130: 23
+   line 131: 34
+   line 133: 43
+   line 134: 50
+   line 135: 54
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      55      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void switchToInsertMode();
+  Code:
+   Stack=4, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokevirtual	#123; //Method getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+   4:	iconst_1
+   5:	invokeinterface	#242,  2; //InterfaceMethod com/mbartl/viimplementation/interfaces/IEditor.resetHighlighting:(Z)V
+   10:	aload_0
+   11:	getstatic	#175; //Field com/mbartl/viimplementation/util/ViMode.INSERT_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   14:	putfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   17:	aload_0
+   18:	getfield	#102; //Field bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+   21:	getfield	#248; //Field com/mbartl/viimplementation/layer/BufferEvaluator.buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   24:	ldc	#168; //String 
+   26:	invokevirtual	#249; //Method com/mbartl/viimplementation/layer/Buffer.setCommand:(Ljava/lang/String;)V
+   29:	aload_0
+   30:	getfield	#81; //Field undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   33:	invokeinterface	#252,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IUndoManager.beginCompoundChange:()V
+   38:	invokestatic	#132; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+   41:	ldc	#224; //String vimcursor
+   43:	invokevirtual	#226; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getBoolean:(Ljava/lang/String;)Z
+   46:	ifeq	58
+   49:	aload_0
+   50:	getfield	#87; //Field caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+   53:	invokeinterface	#255,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/ICaret.setCaretThin:()V
+   58:	aload_0
+   59:	new	#52; //class java/lang/StringBuffer
+   62:	dup
+   63:	bipush	100
+   65:	invokespecial	#258; //Method java/lang/StringBuffer."<init>":(I)V
+   68:	putfield	#55; //Field insertBuffer:Ljava/lang/StringBuffer;
+   71:	return
+  LineNumberTable: 
+   line 138: 0
+   line 139: 10
+   line 140: 17
+   line 141: 29
+   line 142: 38
+   line 143: 49
+   line 145: 58
+   line 146: 71
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      72      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void switchToReplaceMode();
+  Code:
+   Stack=4, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokevirtual	#123; //Method getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+   4:	iconst_1
+   5:	invokeinterface	#242,  2; //InterfaceMethod com/mbartl/viimplementation/interfaces/IEditor.resetHighlighting:(Z)V
+   10:	aload_0
+   11:	getstatic	#190; //Field com/mbartl/viimplementation/util/ViMode.REPLACE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   14:	putfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   17:	aload_0
+   18:	getfield	#102; //Field bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+   21:	getfield	#248; //Field com/mbartl/viimplementation/layer/BufferEvaluator.buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   24:	ldc	#168; //String 
+   26:	invokevirtual	#249; //Method com/mbartl/viimplementation/layer/Buffer.setCommand:(Ljava/lang/String;)V
+   29:	aload_0
+   30:	getfield	#81; //Field undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   33:	invokeinterface	#252,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IUndoManager.beginCompoundChange:()V
+   38:	invokestatic	#132; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+   41:	ldc	#224; //String vimcursor
+   43:	invokevirtual	#226; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getBoolean:(Ljava/lang/String;)Z
+   46:	ifeq	58
+   49:	aload_0
+   50:	getfield	#87; //Field caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+   53:	invokeinterface	#255,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/ICaret.setCaretThin:()V
+   58:	aload_0
+   59:	new	#52; //class java/lang/StringBuffer
+   62:	dup
+   63:	bipush	100
+   65:	invokespecial	#258; //Method java/lang/StringBuffer."<init>":(I)V
+   68:	putfield	#55; //Field insertBuffer:Ljava/lang/StringBuffer;
+   71:	return
+  LineNumberTable: 
+   line 149: 0
+   line 150: 10
+   line 151: 17
+   line 152: 29
+   line 153: 38
+   line 154: 49
+   line 156: 58
+   line 157: 71
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      72      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void switchToVisualMode(com.mbartl.viimplementation.util.ViMode);
+  Code:
+   Stack=2, Locals=2, Args_size=2
+   0:	aload_0
+   1:	aload_1
+   2:	putfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   5:	aload_0
+   6:	getfield	#73; //Field selectionManager:Lcom/mbartl/viimplementation/layer/SelectionManager;
+   9:	aload_0
+   10:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   13:	invokevirtual	#264; //Method com/mbartl/viimplementation/layer/SelectionManager.activateVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+   16:	aload_0
+   17:	getfield	#102; //Field bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+   20:	getfield	#248; //Field com/mbartl/viimplementation/layer/BufferEvaluator.buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   23:	ldc	#168; //String 
+   25:	invokevirtual	#249; //Method com/mbartl/viimplementation/layer/Buffer.setCommand:(Ljava/lang/String;)V
+   28:	aload_0
+   29:	getfield	#81; //Field undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   32:	invokeinterface	#252,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IUndoManager.beginCompoundChange:()V
+   37:	invokestatic	#132; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+   40:	ldc	#224; //String vimcursor
+   42:	invokevirtual	#226; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getBoolean:(Ljava/lang/String;)Z
+   45:	ifeq	57
+   48:	aload_0
+   49:	getfield	#87; //Field caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+   52:	invokeinterface	#230,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/ICaret.setCaretThick:()V
+   57:	return
+  LineNumberTable: 
+   line 160: 0
+   line 161: 5
+   line 162: 16
+   line 163: 28
+   line 164: 37
+   line 165: 48
+   line 167: 57
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      58      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      58      1    mode       Lcom/mbartl/viimplementation/util/ViMode;
+
+
+public void unLoad();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	invokestatic	#132; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getInstance:()Lcom/mbartl/viimplementation/preferences/ViPreferenceService;
+   3:	ldc	#224; //String vimcursor
+   5:	invokevirtual	#226; //Method com/mbartl/viimplementation/preferences/ViPreferenceService.getBoolean:(Ljava/lang/String;)Z
+   8:	ifeq	20
+   11:	aload_0
+   12:	getfield	#87; //Field caret:Lcom/mbartl/viimplementation/interfaces/ICaret;
+   15:	invokeinterface	#268,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/ICaret.restoreOriginalCaret:()V
+   20:	aload_0
+   21:	getfield	#57; //Field keyListener:Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+   24:	invokeinterface	#271,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IKeyListener.unregister:()V
+   29:	aload_0
+   30:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   33:	invokevirtual	#106; //Method com/mbartl/viimplementation/layer/LayerInformation.getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+   36:	invokevirtual	#276; //Method com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter.unregister:()V
+   39:	return
+  LineNumberTable: 
+   line 173: 0
+   line 174: 11
+   line 176: 20
+   line 177: 29
+   line 178: 39
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      40      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean isInInsertMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	getstatic	#175; //Field com/mbartl/viimplementation/util/ViMode.INSERT_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	if_acmpne	12
+   10:	iconst_1
+   11:	ireturn
+   12:	iconst_0
+   13:	ireturn
+  LineNumberTable: 
+   line 181: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      14      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean isInVisualOrVisualLineMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	getstatic	#180; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	if_acmpeq	22
+   10:	aload_0
+   11:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   14:	getstatic	#185; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_LINE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   17:	if_acmpeq	22
+   20:	iconst_0
+   21:	ireturn
+   22:	iconst_1
+   23:	ireturn
+  LineNumberTable: 
+   line 188: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      24      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean isInVisualCharacterMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	getstatic	#180; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	if_acmpne	12
+   10:	iconst_1
+   11:	ireturn
+   12:	iconst_0
+   13:	ireturn
+  LineNumberTable: 
+   line 195: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      14      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean isInVisualLineMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	getstatic	#185; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_LINE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	if_acmpne	12
+   10:	iconst_1
+   11:	ireturn
+   12:	iconst_0
+   13:	ireturn
+  LineNumberTable: 
+   line 202: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      14      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean isInCommandMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	getstatic	#61; //Field com/mbartl/viimplementation/util/ViMode.COMMAND_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	if_acmpne	12
+   10:	iconst_1
+   11:	ireturn
+   12:	iconst_0
+   13:	ireturn
+  LineNumberTable: 
+   line 206: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      14      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean isInReplaceMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#66; //Field mode:Lcom/mbartl/viimplementation/util/ViMode;
+   4:	getstatic	#190; //Field com/mbartl/viimplementation/util/ViMode.REPLACE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   7:	if_acmpne	12
+   10:	iconst_1
+   11:	ireturn
+   12:	iconst_0
+   13:	ireturn
+  LineNumberTable: 
+   line 210: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      14      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void toggleVisualMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokevirtual	#285; //Method isInVisualOrVisualLineMode:()Z
+   4:	ifeq	14
+   7:	aload_0
+   8:	invokevirtual	#155; //Method switchToCommandMode:()V
+   11:	goto	21
+   14:	aload_0
+   15:	getstatic	#180; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   18:	invokevirtual	#287; //Method switchToVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+   21:	return
+  LineNumberTable: 
+   line 214: 0
+   line 215: 7
+   line 217: 14
+   line 219: 21
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      22      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void toggleVisualLineMode();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokevirtual	#290; //Method isInVisualLineMode:()Z
+   4:	ifeq	14
+   7:	aload_0
+   8:	invokevirtual	#155; //Method switchToCommandMode:()V
+   11:	goto	21
+   14:	aload_0
+   15:	getstatic	#185; //Field com/mbartl/viimplementation/util/ViMode.VISUAL_LINE_MODE:Lcom/mbartl/viimplementation/util/ViMode;
+   18:	invokevirtual	#287; //Method switchToVisualMode:(Lcom/mbartl/viimplementation/util/ViMode;)V
+   21:	return
+  LineNumberTable: 
+   line 222: 0
+   line 223: 7
+   line 225: 14
+   line 227: 21
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      22      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public java.lang.StringBuffer getInsertBuffer();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#55; //Field insertBuffer:Ljava/lang/StringBuffer;
+   4:	areturn
+  LineNumberTable: 
+   line 233: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void setInsertBuffer(java.lang.StringBuffer);
+  Code:
+   Stack=2, Locals=2, Args_size=2
+   0:	aload_0
+   1:	aload_1
+   2:	putfield	#55; //Field insertBuffer:Ljava/lang/StringBuffer;
+   5:	return
+  LineNumberTable: 
+   line 241: 0
+   line 242: 5
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      6      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      6      1    buffer       Ljava/lang/StringBuffer;
+
+
+public com.mbartl.viimplementation.interfaces.IEditor getEditor();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#296; //Method com/mbartl/viimplementation/layer/LayerInformation.getEditor:()Lcom/mbartl/viimplementation/interfaces/IEditor;
+   7:	areturn
+  LineNumberTable: 
+   line 248: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      8      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.layer.BufferEvaluator getBufferEvaluator();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#102; //Field bufferEvaluator:Lcom/mbartl/viimplementation/layer/BufferEvaluator;
+   4:	areturn
+  LineNumberTable: 
+   line 252: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.layer.SelectionManager getSelectionManager();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#73; //Field selectionManager:Lcom/mbartl/viimplementation/layer/SelectionManager;
+   4:	areturn
+  LineNumberTable: 
+   line 256: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.interfaces.AbstractDocumentAdapter getDocument();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#106; //Method com/mbartl/viimplementation/layer/LayerInformation.getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+   7:	areturn
+  LineNumberTable: 
+   line 265: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      8      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public boolean verifyKeyEvent(com.mbartl.viimplementation.util.ViKeyEvent);
+  Code:
+   Stack=4, Locals=4, Args_size=2
+   0:	invokestatic	#303; //Method com/mbartl/viimplementation/layer/ViLayerManager.getInstance:()Lcom/mbartl/viimplementation/layer/ViLayerManager;
+   3:	invokevirtual	#308; //Method com/mbartl/viimplementation/layer/ViLayerManager.isFullVersion:()Z
+   6:	ifne	39
+   9:	invokestatic	#38; //Method java/lang/System.currentTimeMillis:()J
+   12:	lstore_2
+   13:	lload_2
+   14:	getstatic	#44; //Field lastPopupTime:J
+   17:	lsub
+   18:	ldc2_w	#311; //long 300000l
+   21:	lcmp
+   22:	ifle	39
+   25:	lload_2
+   26:	putstatic	#44; //Field lastPopupTime:J
+   29:	aload_0
+   30:	ldc_w	#313; //String Trial Version
+   33:	ldc_w	#315; //String To remove this message buy a full version!\nhttp://www.satokar.com/viplugin/index.php
+   36:	invokevirtual	#317; //Method showDialog:(Ljava/lang/String;Ljava/lang/String;)V
+   39:	aload_0
+   40:	getfield	#92; //Field keyVerifier:Lcom/mbartl/viimplementation/layer/KeyVerifier;
+   43:	aload_1
+   44:	invokevirtual	#321; //Method com/mbartl/viimplementation/layer/KeyVerifier.verifyKey:(Lcom/mbartl/viimplementation/util/ViKeyEvent;)Z
+   47:	ireturn
+  LineNumberTable: 
+   line 270: 0
+   line 271: 9
+   line 272: 13
+   line 273: 25
+   line 274: 29
+   line 275: 33
+   line 274: 36
+   line 279: 39
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      48      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      48      1    e       Lcom/mbartl/viimplementation/util/ViKeyEvent;
+   13      26      2    time       J
+
+
+public void setKeyListener(com.mbartl.viimplementation.interfaces.IKeyListener);
+  Code:
+   Stack=2, Locals=2, Args_size=2
+   0:	aload_0
+   1:	aload_1
+   2:	putfield	#57; //Field keyListener:Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+   5:	aload_0
+   6:	getfield	#57; //Field keyListener:Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+   9:	invokeinterface	#329,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IKeyListener.register:()V
+   14:	return
+  LineNumberTable: 
+   line 283: 0
+   line 284: 5
+   line 285: 14
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      15      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      15      1    keyListener       Lcom/mbartl/viimplementation/interfaces/IKeyListener;
+
+
+public com.mbartl.viimplementation.interfaces.IBookmark getBookmarkImplementation();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#334; //Method com/mbartl/viimplementation/layer/LayerInformation.getBookmark:()Lcom/mbartl/viimplementation/interfaces/IBookmark;
+   7:	areturn
+  LineNumberTable: 
+   line 288: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      8      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.interfaces.IUndoManager getUndoManager();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#81; //Field undoManager:Lcom/mbartl/viimplementation/interfaces/IUndoManager;
+   4:	areturn
+  LineNumberTable: 
+   line 292: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.util.DocumentAnalyzer getDocumentAnalyzer();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#119; //Field analyzer:Lcom/mbartl/viimplementation/util/DocumentAnalyzer;
+   4:	areturn
+  LineNumberTable: 
+   line 296: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void updateDocument();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokevirtual	#339; //Method isInInsertMode:()Z
+   4:	ifne	28
+   7:	aload_0
+   8:	invokevirtual	#341; //Method isInReplaceMode:()Z
+   11:	ifne	28
+   14:	aload_0
+   15:	getfield	#119; //Field analyzer:Lcom/mbartl/viimplementation/util/DocumentAnalyzer;
+   18:	aload_0
+   19:	invokevirtual	#343; //Method getDocument:()Lcom/mbartl/viimplementation/interfaces/AbstractDocumentAdapter;
+   22:	invokevirtual	#110; //Method com/mbartl/viimplementation/interfaces/AbstractDocumentAdapter.get:()Ljava/lang/String;
+   25:	invokevirtual	#344; //Method com/mbartl/viimplementation/util/DocumentAnalyzer.updateAnalyzer:(Ljava/lang/String;)V
+   28:	return
+  LineNumberTable: 
+   line 300: 0
+   line 301: 14
+   line 303: 28
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      29      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void showDialog(java.lang.String, java.lang.String);
+  Code:
+   Stack=3, Locals=3, Args_size=3
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#347; //Method com/mbartl/viimplementation/layer/LayerInformation.getMessageDialog:()Lcom/mbartl/viimplementation/interfaces/IMessageDialog;
+   7:	aload_1
+   8:	aload_2
+   9:	invokeinterface	#351,  3; //InterfaceMethod com/mbartl/viimplementation/interfaces/IMessageDialog.showDialog:(Ljava/lang/String;Ljava/lang/String;)V
+   14:	return
+  LineNumberTable: 
+   line 306: 0
+   line 307: 14
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      15      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+   0      15      1    title       Ljava/lang/String;
+   0      15      2    message       Ljava/lang/String;
+
+
+public com.mbartl.viimplementation.layer.CursorInLinePosition getCursorInLinePosition();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#130; //Field cursorInLinePosition:Lcom/mbartl/viimplementation/layer/CursorInLinePosition;
+   4:	areturn
+  LineNumberTable: 
+   line 310: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.util.WordSeparatorUtils getWordSeparatorUtils();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#153; //Field wordSeparatorUtils:Lcom/mbartl/viimplementation/util/WordSeparatorUtils;
+   4:	areturn
+  LineNumberTable: 
+   line 314: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public com.mbartl.viimplementation.layer.Buffer getBuffer();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#97; //Field buffer:Lcom/mbartl/viimplementation/layer/Buffer;
+   4:	areturn
+  LineNumberTable: 
+   line 321: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+public void showVersionInformation();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#59; //Field layerInformation:Lcom/mbartl/viimplementation/layer/LayerInformation;
+   4:	invokevirtual	#347; //Method com/mbartl/viimplementation/layer/LayerInformation.getMessageDialog:()Lcom/mbartl/viimplementation/interfaces/IMessageDialog;
+   7:	invokeinterface	#362,  1; //InterfaceMethod com/mbartl/viimplementation/interfaces/IMessageDialog.showVersionInformation:()V
+   12:	return
+  LineNumberTable: 
+   line 326: 0
+   line 327: 12
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      13      0    this       Lcom/mbartl/viimplementation/layer/ViLayer;
+
+
+}
+
