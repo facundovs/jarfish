@@ -7,6 +7,9 @@ import java.util.Properties;
 import junit.framework.TestCase;
 
 public class JarFishTest extends TestCase {
+    // this is a comment
+    // this is a comment
+
     public void testListJar() {
         String []args = {"list", "-v1", "./src/test/resources/jars/gepo-1.2.1.jar"};
         Properties config = JarFish.parseArgs(args);
@@ -90,6 +93,26 @@ public class JarFishTest extends TestCase {
         assertEquals("Gepo", config.get("query"));
     }
     
+    public void testParseArgsClassFilter() {
+        String []args = {"jarinfo", "-n", "Gepo", "."};
+        Properties config = JarFish.parseArgs(args);
+        
+        assertNotNull(config);
+        
+        assertEquals("Gepo", config.getProperty("classFilter"));
+    }
+    
+    
+    public void testParseArgsJarFilter() {
+        String []args = {"jarinfo", "-jn", "activation.jar", "."};
+        Properties config = JarFish.parseArgs(args);
+        
+        assertNotNull(config);
+        
+        assertEquals("activation.jar", config.getProperty("jarFilter"));
+    }
+
+
     public void testParseArgsDefault() {
         String []args = {"find", "Gepo", "home", "newHome"};
         Properties config = JarFish.parseArgs(args);

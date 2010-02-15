@@ -44,4 +44,9 @@ public class ConstantEntry {
     public void setValue(Object value) {
         this.value = value;
     }
+    
+    public String toString() {
+        return "type: " + NAMES[this.type] + ", value: " + this.value;
+    }
+
 }

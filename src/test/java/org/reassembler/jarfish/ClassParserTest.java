@@ -6,14 +6,6 @@ import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.List;
 
-import org.reassembler.jarfish.ClassMeta;
-import org.reassembler.jarfish.ClassParser;
-import org.reassembler.jarfish.CodeTable;
-import org.reassembler.jarfish.ConstantEntry;
-import org.reassembler.jarfish.Field;
-import org.reassembler.jarfish.LineNumberEntry;
-import org.reassembler.jarfish.Method;
-
 import junit.framework.TestCase;
 
 public class ClassParserTest extends TestCase {
@@ -27,6 +19,7 @@ public class ClassParserTest extends TestCase {
         ClassMeta cm = new ClassMeta();
         
         cp.parse(cm, din);
+        
         
         assertEquals(0, cm.getMinorVersion());
         assertEquals(49, cm.getMajorVersion());
@@ -97,6 +90,61 @@ public class ClassParserTest extends TestCase {
         din.close();     
         
     }
+    
+    
+    public void testParseGepo() throws Exception {
+        File classFile = new File("src/test/resources/classparsertests/Gepo.class");
+        DataInputStream din = new DataInputStream(new FileInputStream(classFile));
+        
+        ClassParser cp = new ClassParser();
+        ClassMeta cm = new ClassMeta();
+        
+        cp.setDebug(true);
+        
+        cp.parse(cm, din);
+        
+        assertEquals(3, cm.getMinorVersion());
+        assertEquals(45, cm.getMajorVersion());
+        
+        assertTrue(cm.isPublic());
+        assertFalse(cm.isFinal());
+        assertFalse(cm.isInterface());
+        assertFalse(cm.isAbstract());
+        
+        Field []fis = cm.getFields();
+        
+        assertEquals(9, fis.length);
+        assertEquals("log", fis[0].getName());
+
+        assertEquals("Gepo.java", cm.getSourceFileName());
+        
+        assertEquals(351, cm.getConstantPoolSize());
+        
+        assertEquals("GEPO_SKIP was found, skipping file: ", cm.getPoolString(278));
+        
+        assertEquals("org/reassembler/gepo/Gepo", cm.getTypeName());
+        
+        assertEquals("java/lang/Object", cm.getSuperTypeName());
+        
+        
+        String []interfaces = cm.getInterfaces();
+        
+        assertEquals(0, interfaces.length);
+        
+        Method []ms = cm.getMethods();
+        
+        assertEquals(19, ms.length);
+        
+        for (int i = 0; i < ms.length; i++) {
+            Method method = ms[i];
+            if (method.getName().equals("loadProperties")) {
+                assertEquals(2, method.getCodeTable().getCodeAttribute().getExceptionTable().length);
+            }
+        }
+        
+        din.close();     
+    }
+    
     
     public void testParseHeader() throws Exception {
         File classFile = new File("src/test/resources/simple/Simple.class");
@@ -404,5 +452,6 @@ public class ClassParserTest extends TestCase {
         
         din.close();
     }    
-
+    
+ 
 }

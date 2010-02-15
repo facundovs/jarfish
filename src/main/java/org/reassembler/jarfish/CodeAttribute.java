@@ -24,6 +24,7 @@ public class CodeAttribute extends Attribute {
     private int maxLocals;
     private int codeLength;
     private byte []code;
+    private ExceptionTable []exceptionTable;
 
     public int getMaxStack() {
         return maxStack;
@@ -55,6 +56,14 @@ public class CodeAttribute extends Attribute {
 
     public void setCode(byte[] code) {
         this.code = code;
+    }
+
+    public ExceptionTable[] getExceptionTable() {
+        return exceptionTable;
+    }
+
+    public void setExceptionTable(ExceptionTable[] exceptionTable) {
+        this.exceptionTable = exceptionTable;
     }
 
 }

@@ -52,7 +52,7 @@ public class JarIndexer {
                 JarMeta jm = new JarMeta(file.getAbsolutePath());
 
                 if (file.canRead()) {
-                    switch (JarFish.verbosity) {
+                    switch (JarFish.verbosityThreshold) {
                     case JarFish.NORMAL:
                         System.out.print(".");
                         break;
@@ -95,7 +95,7 @@ public class JarIndexer {
         while (e.hasMoreElements()) {
             Object entry = (Object) e.nextElement();
 
-            if (JarFish.verbosity > JarFish.NORMAL) {
+            if (JarFish.verbosityThreshold > JarFish.NORMAL) {
                 System.out.println(entry);
             }
 

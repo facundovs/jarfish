@@ -21,6 +21,8 @@ import java.util.List;
  *
  */
 public class ClassParser {
+    private boolean debug = false;
+    
     public void parseHeader(ClassMeta cm, DataInputStream din)
             throws IOException {
         cm.setMinorVersion(din.readUnsignedShort());
@@ -64,6 +66,11 @@ public class ClassParser {
 
     public void parseMethods(ClassMeta cm, DataInputStream din) throws IOException {
         int methodsCount = readU2(din);
+        
+        if (this.debug) {
+            System.out.println("parsing " + methodsCount + " methods");
+        }
+        
         cm.setMethods(readMethods(cm, methodsCount, din));
     }
 
@@ -79,6 +86,10 @@ public class ClassParser {
             int nameIndex = readU2(din);
                 
             String name = cm.getConstantEntry(nameIndex - 1).getValue().toString();
+            
+            if (this.debug) {
+                System.out.println("    method name: " + name);
+            }
             
             m.setName(name);
             int descriptorIndex = readU2(din);
@@ -97,7 +108,12 @@ public class ClassParser {
     
     private void skipBytes(int count, DataInputStream din) throws IOException {
         for (int i = 0; i < count; i++) {
-            din.readByte();
+            try {
+                din.readByte();
+            }
+            catch (IOException e) {
+                throw new IOException("Error occurred reading byte: (" + i + ") of (" + count + ") bytes", e);
+            }
         }
     }
 
@@ -109,6 +125,10 @@ public class ClassParser {
             int length = readU4(din);
             
             Attribute a = null;
+            
+            if (debug) {
+                System.out.println("attribute name: " + name);
+            }
             
             if (name.equals(Attribute.CODE)) {
                 CodeAttribute ca = new CodeAttribute();
@@ -130,7 +150,9 @@ public class ClassParser {
                 ca.setCode(code);
                 
                 int exceptionTableLength = readU2(din);
-                skipBytes(exceptionTableLength, din);
+                ExceptionTable []ets = readExceptionTables(din, exceptionTableLength);
+                
+                ca.setExceptionTable(ets);
                 
                 int ac = readU2(din);
                 Attribute[] attributes = readAttributes(cm, ac, din);
@@ -164,7 +186,12 @@ public class ClassParser {
                 cm.setSourceFileName(sourceName);
             }
             else {
-                System.out.println("no class for: " + name);
+                // we're not interested in this attribute type right now, so
+                // we'll just skip it.
+                if (this.debug) {
+                    System.out.println("no class for: " + name + ", skipping " + length + " bytes.");
+                }
+                
                 a = as[j] = new Attribute();
                 a.setName(name);
                  
@@ -175,6 +202,21 @@ public class ClassParser {
         return as;
     }
     
+    private ExceptionTable[] readExceptionTables(DataInputStream din,
+            int exceptionTableLength) throws IOException {
+        ExceptionTable []tables = new ExceptionTable[exceptionTableLength];
+        for (int i = 0; i < exceptionTableLength; i++) {
+            ExceptionTable et = tables[i] = new ExceptionTable();
+            
+            et.setStartPc(readU2(din));
+            et.setEndPc(readU2(din));
+            et.setHandlerPc(readU2(din));
+            et.setCatchType(readU2(din));
+        }
+        
+        return tables;
+    }
+
     private int readU2(DataInputStream din) throws IOException {
         return din.readUnsignedShort();
     }
@@ -323,13 +365,36 @@ public class ClassParser {
     }
 
     public void parse(ClassMeta cm, DataInputStream din) throws IOException {
+        if (debug) { System.out.println("parsing sig");}
         testSig(din);
+        
+        if (debug) { System.out.println("parsing header");}
         parseHeader(cm, din);
+        
+        if (debug) { System.out.println("parsing pool");}
         parsePool(cm, din);
+        
+        if (debug) { System.out.println("parsing sig");}
         parseAccessFlags(cm, din);
+        
+        if (debug) { System.out.println("parsing taxonomy");}
         readTaxonomy(cm, din);
+        
+        if (debug) { System.out.println("parsing fields");}
         readFields(cm, din);
+        
+        if (debug) { System.out.println("parsing methods");}
         parseMethods(cm, din);
+        
+        if (debug) { System.out.println("parsing class attributes");}
         parseClassAttributes(cm, din);
+    }
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 }

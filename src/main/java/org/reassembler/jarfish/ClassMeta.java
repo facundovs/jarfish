@@ -24,6 +24,17 @@ public class ClassMeta {
     private String classVersion;
     private String javaVersion;
    
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("java version:")
+            .append(this.javaVersion)
+            .append(", class version:")
+            .append(this.classVersion);
+
+        return sb.toString();
+    }
+
     public Method[] getMethods() {
         return this.methods;
     }
@@ -123,7 +134,8 @@ public class ClassMeta {
     }
 
     public String getPoolString(int i) {
-        return getConstantEntry(i).getValue().toString();
+        ConstantEntry e = getConstantEntry(i); 
+        return e.getValue().toString();
     }
 
     public String getSourceFileName() {
