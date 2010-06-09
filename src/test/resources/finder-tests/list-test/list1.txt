@@ -1,0 +1,3 @@
+src/test/resources/finder-tests/simple/gepo-1.2.1.jar
+src/test/resources/finder-tests/simple/gepo-1.3-b1.jar
+src/test/resources/finder-tests/simple/dummyfiledoesnotexist.jasdskdjsladjaskldj
