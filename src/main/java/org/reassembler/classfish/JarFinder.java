@@ -13,6 +13,8 @@ import java.util.jar.JarFile;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.reassembler.jarfish.JarFish;
+
 public class JarFinder implements FindListener {
     private ArchiveScanListener listener;
     private boolean recursive = true;
@@ -104,7 +106,7 @@ public class JarFinder implements FindListener {
                 findInJar(new Jar(new JarFile(file)));
             }
             catch (IOException e) {
-                e.printStackTrace();
+                ScanFish.trace("error processing file: " + file + ", " + e, JarFish.LOUD);
             }
         }
         else if (file.getName().endsWith(".class") && this.scanRawClassFiles) {
@@ -175,28 +177,6 @@ public class JarFinder implements FindListener {
         return parts[parts.length - 1];
     }
 
-    /**
-     * Is the file an archive type and does it match the jar filter.
-     * 
-     * @param name
-     * @return
-     */
-    private boolean matchesArchive(String name) {
-        if (!isArchiveType(name)) {
-            return false;
-        }
-        
-        if (this.jarFilter == null) {
-            return true;
-        }
-        else {
-            Matcher m = this.jarFilter.matcher(name);
-            
-            return m.matches();
-        }
-    }
-    
-    
     private boolean matchesFilter(String name) {
         if (this.jarFilter == null) {
             return true;
