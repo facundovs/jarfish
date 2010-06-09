@@ -85,6 +85,7 @@ public class JarFish {
             + "-v1                  quiet - don't print much trace to stdout\n"
             + "-v2                  normal - print normal amounts of trace to stdout\n"
             + "-v3                  loud - print all trace to stdout\n"
+            + "-cp                  classpath to scan (e.g. a.jar:.:bin:commons.jar) File.pathSeparatorChar will be used to parse the path\n"
             + "-x                   load extended information for jar file entries\n"
             + "-w                   ignore raw class files found on the file system\n"
             + "-c <scannerTypeName> scan using an instance of the named type\n"
@@ -450,6 +451,12 @@ public class JarFish {
                     it.remove();
                     
                     config.setProperty("jarFilter", type);
+                }
+                else if (arg.equals("-cp")) {
+                    String type = (String) it.next();
+                    it.remove();
+                    
+                    config.setProperty("classPath", type);
                 }
                 else {
                     throw new IllegalArgumentException("unknown option: " + arg);

@@ -23,6 +23,27 @@ public class ClassMeta {
     private Attribute[] attributes;
     private String classVersion;
     private String javaVersion;
+    
+    public void reset() {
+        minorVersion = 0;
+        majorVersion = 0;
+        constantPoolSize = 0;
+        _public = false;
+        _final = false;
+        _interface = false;
+        _super = false;
+        _abstract = false;
+        methods = null;
+        entries = null;
+        sourceFileName = null;
+        superTypeName = null;
+        typeName = null;
+        interfaces = null;
+        fields = null;
+        attributes = null;
+        classVersion = null;
+        javaVersion = null; 
+    }
    
     public String toString() {
         StringBuffer sb = new StringBuffer();
