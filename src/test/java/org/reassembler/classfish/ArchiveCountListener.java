@@ -1,13 +1,15 @@
 package org.reassembler.classfish;
 
-import org.reassembler.classfish.ArchiveScanListener;
-import org.reassembler.classfish.FindFile;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ArchiveCountListener extends CountListener implements ArchiveScanListener {
     private boolean countArchives = true;
     private boolean countClasses = true;
     private boolean debug;
+    private List archives = new ArrayList();
+    private List classes = new ArrayList();
 
     public void foundClass(FindFile file) {
         if (isDebug()) {
@@ -16,6 +18,7 @@ public class ArchiveCountListener extends CountListener implements ArchiveScanLi
         
         if (countClasses) {
             increment();
+            this.classes.add(file);
         }
     }
 
@@ -61,10 +64,9 @@ public class ArchiveCountListener extends CountListener implements ArchiveScanLi
         
         if (countArchives) {
             increment();
+            this.archives.add(file);
         }
     }
-
-
 
     public void foundFile(FindFile file) {
         if (isDebug()) {
@@ -78,5 +80,21 @@ public class ArchiveCountListener extends CountListener implements ArchiveScanLi
 
     public void setDebug(boolean debug) {
         this.debug = debug;
+    }
+
+    public List getArchives() {
+        return archives;
+    }
+
+    public void setArchives(List archives) {
+        this.archives = archives;
+    }
+
+    public List getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List classes) {
+        this.classes = classes;
     }
 }

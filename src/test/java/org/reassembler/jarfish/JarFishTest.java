@@ -111,6 +111,32 @@ public class JarFishTest extends TestCase {
         
         assertEquals("activation.jar", config.getProperty("jarFilter"));
     }
+    
+    public void testParsePaths() {
+        String []parts = {
+                "a.jar",
+                ".",
+                "bin",
+                "felt/nested/blue.war",
+                };
+        
+        String cp = "";
+        for (int i = 0; i < parts.length; i++) {
+            cp += parts[i];
+            
+            if (i + 1 < parts.length) {
+                cp += File.pathSeparator;
+            }
+        }
+        
+        String []args = {"jarinfo", "-cp", cp};
+        
+        Properties props = JarFish.parseArgs(args);
+        
+        assertTrue(props.getProperty("path") == null);
+        
+        assertEquals(cp, props.getProperty("classPath"));
+    }
 
 
     public void testParseArgsDefault() {

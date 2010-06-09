@@ -88,7 +88,6 @@ public class ClassParserTest extends TestCase {
         assertEquals("(Ljava/lang/Thread;[Ljava/lang/String;)I", m.getDescriptor());
         
         din.close();     
-        
     }
     
     
