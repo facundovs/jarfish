@@ -1,6 +1,8 @@
 package org.reassembler.classfish;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +15,8 @@ import java.util.jar.JarFile;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.reassembler.jarfish.ClassMeta;
+import org.reassembler.jarfish.ClassParser;
 import org.reassembler.jarfish.JarFish;
 
 public class JarFinder implements FindListener {
@@ -25,6 +29,8 @@ public class JarFinder implements FindListener {
             Arrays.asList(new String[]{".jar", ".car", ".ear", ".sar", ".war", ".zip"});
     private Properties config;
     private boolean scanRawClassFiles = true;
+    
+    private boolean loadExtended = false;
     
     // for unit tests
     JarFinder() {
@@ -49,6 +55,8 @@ public class JarFinder implements FindListener {
         setRecursive(new Boolean(config.getProperty("recurse", "true")).booleanValue());
 
         this.scanRawClassFiles = new Boolean(config.getProperty("scanRawClassFiles", "true")).booleanValue();
+        
+        this.loadExtended = new Boolean(config.getProperty("loadExtended", "false")).booleanValue();
     }
     
     public void start() {
@@ -114,6 +122,19 @@ public class JarFinder implements FindListener {
             FindFile ff = new FindFile(file);
             ff.setSize(file.length());
             ff.getMeta().put("source", file.getAbsolutePath());
+            
+            if (this.loadExtended) {
+                ClassMeta cm = new ClassMeta();
+                ClassParser cp = new ClassParser();
+                try {
+                    cp.parse(cm, new DataInputStream(new FileInputStream(file)));
+                    ff.getMeta().put("classMeta", cm);
+                }
+                catch (Exception e) {
+                    ScanFish.traceLoud("error parsing class: " + e);
+                }
+            }
+            
             this.listener.foundClass(ff);
         }
         else {
@@ -142,6 +163,20 @@ public class JarFinder implements FindListener {
                 }
                 
                 faf.getMeta().put("source", jar.getLineage());
+                
+                if (this.loadExtended && faf.getName().endsWith(".class")) {
+                    ClassMeta cm = new ClassMeta();
+                    ClassParser cp = new ClassParser();
+                    
+                    try {
+                        cp.parse(cm, new DataInputStream(faf.getStream()));
+                        faf.getMeta().put("classMeta", cm);
+                    }
+                    catch (Exception e) {
+                        System.err.println("error parsing class: " + faf.getName());
+                    }
+                }
+                
                 
                 String shortName = getEntryShortName(entry.getName());
                 

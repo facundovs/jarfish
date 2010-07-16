@@ -10,9 +10,12 @@ public abstract class BaseFish implements ArchiveScanListener {
     protected FindFile lastArchive;
     private boolean emitted;
     protected ArchiveScanListener resultsListener;
+    private boolean emitExtended;
     
     public BaseFish(Properties config) {
         this.config = config;
+        
+        this.emitExtended = Boolean.parseBoolean(config.getProperty("loadExtended", "false"));
     }
 
     public void foundArchive(FindFile file) {
@@ -47,7 +50,16 @@ public abstract class BaseFish implements ArchiveScanListener {
             this.resultsListener.foundClass(file);
         }
         else {
-            System.out.println("    " + file.getName());
+            String msg;
+            
+            if (!emitExtended) {
+                msg = "    " + file.getName();
+            }
+            else {
+                msg = file.getName() + "\n      " + file.getMeta();
+            }
+            
+            System.out.println(msg);
         }
     }
     

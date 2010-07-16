@@ -46,6 +46,29 @@ public class JarInfoFishTest extends TestCase {
         System.out.println(cl.getArchives());
     }
     
+    
+    public void testNameFilteredScan() {
+        String []args = {"jarinfo", "-f", "common-codec", "src/test/resources/jarfinder-tests/simple"};
+
+        Properties props = JarFish.parseArgs(args);
+        
+        JarInfoFish f = new JarInfoFish(props);
+        
+        ArchiveCountListener cl = new ArchiveCountListener();
+        cl.setCountArchives(true);
+        cl.setCountClasses(false);
+        f.setResultsListener(cl);
+        JarFinder jf = new JarFinder(props);
+        jf.setListener(f);
+        jf.start();
+        
+        assertEquals(2, cl.getCount());
+        
+        System.out.println(cl.getArchives().get(0));
+        
+
+    }
+    
     public void testNestedScanWithJarName() {
         String []args = {"jarinfo", "-jn", "simple.jar", "src/test/resources/jarfinder-tests/nestedjar"};
 
